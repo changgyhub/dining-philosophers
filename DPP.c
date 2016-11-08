@@ -4,7 +4,7 @@
  * Development platform: gcc (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
  * Last modified date: 8 Nov 2016
  * Compilation: gcc DPP.c -o DPP -pthread
-                ./DPP < N > < S > < T >
+                ./DPP <N> <S> <T>
  */
 
 #include <time.h>
@@ -29,7 +29,7 @@ typedef struct {
 
 sem_t *forks;         // semaphores of each fork, should be of size N in total
 sem_t *statuslock;    // the semaphore of changing information of philosopher status 
-sem_t *forklock;      // the semaphore of changing information of forks
+sem_t *forklock;      // the semaphore of changing information of fork holders
 int *fork_holders;    // the position of fork holders
 pthread_t *threads;   // pthreads, should be of size N (philosopher) + 1 (watcher)
 philosopher* philosophers;
