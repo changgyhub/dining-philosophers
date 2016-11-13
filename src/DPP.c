@@ -2,8 +2,8 @@
  * Student name: Gao Chang
  * UID: 3035141748
  * Development platform: gcc (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
- * Last modified date: 8 Nov 2016
- * Compilation: gcc DPP.c -o DPP -pthread
+ * Last modified date: 13 Nov 2016
+ * Compilation: gcc DPP.c -o DPP -Wall -pthread
                 ./DPP <N> <S> <T>
  */
 
@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <pthread.h>
 #include <semaphore.h>
 
@@ -124,13 +125,13 @@ void *run_philosopher(void *param){
     phi->status = Waiting;
     sem_post(statuslock);
 
-    sem_wait(forks+first_fork);
+    sem_wait(forks+first_fork); // wait 
 
     sem_wait(forklock);
     fork_holders[first_fork] = phi->pos;
     sem_post(forklock);
 
-    sem_wait(forks+second_fork);
+    sem_wait(forks+second_fork); // wait second fork
 
     sem_wait(forklock);
     fork_holders[second_fork] = phi->pos;
@@ -142,13 +143,13 @@ void *run_philosopher(void *param){
 
     think_or_eat(); // eat
 
-    sem_post(forks+first_fork);
+    sem_post(forks+first_fork); // drop first fork
 
     sem_wait(forklock);
     fork_holders[first_fork] = -1;
     sem_post(forklock);
 
-    sem_post(forks+second_fork);
+    sem_post(forks+second_fork); // drop second fork
 
     sem_wait(forklock);
     fork_holders[second_fork] = -1;
@@ -170,8 +171,8 @@ void *run_philosopher(void *param){
 void *run_watcher(){
   int tot_think, tot_wait, tot_eat, total_term, tot_inuse;
 
-  // start watching
-  while (!terminate_flag || total_term != N){
+  // start watching untill all N philosopher threads terminated
+  while (total_term != N){
     tot_think = tot_wait = tot_eat = total_term = tot_inuse = 0;
     usleep(500*1000);     // 500 milliseconds
     fprintf(stdout, "Philo\tState\t\t\tFork\tHeld by\n");
