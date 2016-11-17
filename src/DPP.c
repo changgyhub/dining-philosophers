@@ -1,8 +1,7 @@
 /*
- * Student name: Gao Chang
- * UID: 3035141748
+ * Author: Gao Chang
  * Development platform: gcc (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
- * Last modified date: 14 Nov 2016
+ * Last modified date: 17 Nov 2016
  * Compilation: gcc DPP.c -o DPP -Wall -pthread
                 ./DPP <N> <S> <T>
  */
