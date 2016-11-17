@@ -1,6 +1,12 @@
 # Dining-Philosophers
 A simple yet robust solution to Dining Philosophers in pthread
 ## Output format
+<tr>
+  <td>Philo</td>
+  <td>State</td>
+  <td>Fork</td>
+  <td>Held by</td>
+</tr>
 Philo   State                   Fork    Held by<br>
 [ 0]:   Thinking                [ 0]:   Free<br>
 [ 1]:   Eating                  [ 1]:      1<br>
