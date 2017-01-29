@@ -46,6 +46,8 @@ void think_or_eat();
 void *run_watcher();
 /* run the philosophers */
 void *run_philosopher(void *);
+/* join pthreads*/
+void join_threads();
 
 int main(int argc, char const *argv[]){
   N = atoi(argv[1]);
@@ -61,7 +63,7 @@ int main(int argc, char const *argv[]){
   usleep(1000*1000*T);
   terminate_flag = 1;
 
-  pthread_exit(NULL);
+  join_threads();
   return 0;
 }
 
@@ -208,4 +210,11 @@ void *run_watcher(){
     fprintf(stdout, "Th=%2d Wa=%2d Ea=%2d\t\tUse=%2d\tAvail=%2d\n\n\n", tot_think, tot_wait, tot_eat, tot_inuse, N-tot_inuse);
   }
   pthread_exit(NULL);
+}
+
+void join_threads(){
+  int i;
+  for(i = 0; i <= N; ++i) {
+    pthread_join(threads[i], NULL);
+  }
 }
