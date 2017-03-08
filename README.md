@@ -1,6 +1,7 @@
 # Dining-Philosophers
 A simple yet robust solution to Dining Philosophers in pthread
-## Output format
+
+### Output format
 | Philo | State       | Fork   | Held by  |
 |-------|-------------|--------|----------|
 | [ 0]: | Thinking    | [ 0]:  | Free     |
