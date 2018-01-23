@@ -1,8 +1,8 @@
 # Dining Philosophers
 A simple yet robust solution to Dining Philosophers in pthread
 
-### Notes
-* Do not copy contents of this repo for course assignments. You should take the responsibility for any form of plagiarism.
+### Note
+Do not copy contents of this repo for course assignments. You should take the responsibility for any form of plagiarism.
 
 ### Output format
 | Philo | State       | Fork   | Held by  |
